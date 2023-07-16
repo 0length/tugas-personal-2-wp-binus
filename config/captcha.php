@@ -8,7 +8,7 @@ return [
         'width' => 120,
         'height' => 36,
         'quality' => 90,
-        'math' => true,
+        'math' => false,
         'expire' => 60,
         'encrypt' => false,
     ],
@@ -33,8 +33,8 @@ return [
     ],
     'mini' => [
         'length' => 3,
-        'width' => 60,
-        'height' => 32,
+        'width' => 150,
+        'height' => 50,
     ],
     'inverse' => [
         'length' => 5,

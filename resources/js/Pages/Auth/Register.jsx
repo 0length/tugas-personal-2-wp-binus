@@ -16,6 +16,7 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
+        captcha: ''
     });
 
     useEffect(() => {
@@ -41,9 +42,9 @@ export default function Register() {
                     <TextInput
                         id="name"
                         name="name"
+                        autoComplete="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData("name", e.target.value)}
                         // required
@@ -134,13 +135,18 @@ export default function Register() {
                     </div>
                 </div>
                 <div className="form-group mb-4">
-                    <input
-                        id="captcha"
+                    <TextInput
+                         id="captcha"
+                         name="captcha"
+                         autoComplete="captcha"
+                         value={data.captcha}
+                        onChange={(e) => setData("captcha", e.target.value)}
                         type="text"
                         className="form-control"
                         placeholder="Enter Captcha"
-                        name="captcha"
                     />
+                    <InputError message={errors.captcha} className="mt-2" />
+
                 </div>
                 <div className="flex items-center justify-end mt-4">
                     <Link

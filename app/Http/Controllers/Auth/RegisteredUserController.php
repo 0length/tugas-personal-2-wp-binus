@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register', ['captcha' => captcha_img()]);
+        return Inertia::render('Auth/Register', ['captcha' => captcha_img('mini')]);
     }
 
     /**
@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
+            'captcha' => 'required|captcha',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'string', 'min:10', 'confirmed', Rules\Password::min(10)->symbols()->letters()->mixedCase()->numbers()],
@@ -41,7 +42,6 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'captcha' => 'required|captcha'
         ]);
 
         event(new Registered($user));
